@@ -1,13 +1,54 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: gold;
+  border-radius: 50%;
+  animation: twinkle 1s infinite alternate;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmerMovement {
+  0% { background-position: 0 0; }
+  50% { background-position: 50px 50px; }
+  100% { background-position: 0 0; }
+}
+
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(to bottom, #9b5de5, #49006a);
+  background-blend-mode: overlay;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  color: white;
+}
+
+/* Starry Gold Shimmer Effect */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle, rgba(255, 215, 0, 0.7) 1px, transparent 1px), /* Small gold stars */
+    radial-gradient(circle, rgba(255, 215, 0, 0.6) 2px, transparent 2px), /* Medium gold stars */
+    radial-gradient(circle, rgba(255, 215, 0, 0.4) 3px, transparent 3px); /* Large gold stars */
+  background-size: 10px 10px, 15px 15px, 20px 20px;
+  background-blend-mode: overlay;
+  opacity: 0.8;
+  animation: shimmerMovement 4s linear infinite, twinkle 3s ease-in-out infinite;
+  pointer-events: none;
 }
